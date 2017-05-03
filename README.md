@@ -11,5 +11,6 @@ pylocalize filename languageOrigin -translationService language1 language2,...
 
 Example: pylocalize C:/localize_en en -google es fr
 
-For now, the only translation service is google translator.
-
+For now, translation services available:
+- Google translate (-google): https://translate.google.com/
+- Transltr (-transltr): http://www.transltr.org/
