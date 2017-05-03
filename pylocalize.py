@@ -1,7 +1,8 @@
 import sys
 from managefiles import *
 from localizeVo import *
-from translatorServices.translatorGoogle import *
+from translatorServices.translatorGoogle import makeCall as translatorGoogle
+from translatorServices.translatorTransltr import makeCall as translatorTransltr
 
 ##------------------Main---------------------##
 
@@ -13,7 +14,7 @@ if(len(args) < 4):
 
 # statics variables:
 languages = ['en','es','fr','ge']
-translators = ['google']
+translators = ['google', 'transltr']
 
 # Get parameters:
 languagesSelected = [];
@@ -45,7 +46,12 @@ for lang in languagesSelected:
     tempLocList = []
     print ("Translating ",languageOrigin," to ",lang,"...")
     for loc in locList:
-        tr = makeCall(languageOrigin,lang,loc.getValue())
+        tr = ""
+        if translatorSelected == "google":
+            tr = translatorGoogle(languageOrigin,lang,loc.getValue())
+        elif translatorSelected == "transltr":
+            tr = translatorTransltr(languageOrigin,lang,loc.getValue())
+            
         tempLocList.append(LocalizeVo(loc.getName(),tr))
 
     #for loc in tempLocList:
